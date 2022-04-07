@@ -121,6 +121,12 @@ namespace Agent.Sdk.Knob
             new EnvironmentKnobSource("VSTSAGENT_TRACE"),
             new BuiltInDefaultKnobSource(string.Empty));
 
+        public static readonly Knob AgentDiagLogPath = new Knob(
+            nameof(AgentDiagLogPath),
+            "If set to anything, the _diag folder containing the agent diag log will be created here.",
+            new EnvironmentKnobSource("AGENT_DIAGLOGPATH"),
+            new BuiltInDefaultKnobSource(string.Empty));
+
         // Timeouts
         public static readonly Knob AgentChannelTimeout = new Knob(
             nameof(AgentChannelTimeout),

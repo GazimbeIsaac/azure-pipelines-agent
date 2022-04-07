@@ -17,6 +17,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using Pipelines = Microsoft.TeamFoundation.DistributedTask.Pipelines;
+using Agent.Sdk.Knob;
 
 namespace Microsoft.VisualStudio.Services.Agent.Worker
 {
@@ -433,7 +434,7 @@ namespace Microsoft.VisualStudio.Services.Agent.Worker
             // Since this is the Worker context, we still want to fetch the Agent _diag folder.
             // This might have been overriden by the envrionment variable.
             // TODO: this is a hacky way to do it, maybe it should be a config value
-            var diagFolder = Environment.GetEnvironmentVariable($"AGENT_DIAGLOGPATH");
+            var diagFolder = AgentKnobs.AgentDiagLogPath.GetValue(HostContext).AsString();
             if (string.IsNullOrEmpty(diagFolder))
             {
                 diagFolder = HostContext.GetDirectory(WellKnownDirectory.Root);
